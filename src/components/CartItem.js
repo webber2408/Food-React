@@ -22,7 +22,9 @@ class CartItem extends Component{
                 <b>
                 Price: {' '} {price}
                 </b>
-                <button style={btnStyle}>Add To Cart</button>
+                <button style={btnStyle}
+                        onClick = {this.props.addToCart.bind(this,id)}
+                >Add To Cart</button>
                 </p>
                 
             </div>

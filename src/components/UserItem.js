@@ -15,7 +15,7 @@ class UserItem extends Component{
                 <b>
                 Price: {' '} {price}
                 </b>
-                <button style={btnStyle}>Remove From Cart</button>
+                <button style={btnStyle} onClick = {this.props.removeItem.bind(this,id)}>Remove From Cart</button>
                 </p>
                 
             </div>

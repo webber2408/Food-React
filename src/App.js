@@ -20,7 +20,7 @@ class App extends Component {
         id:2,
         name:"Chips",
         price:"20",
-        purchased:true
+        purchased:false
       },
       {
         id:3,
@@ -34,8 +34,48 @@ class App extends Component {
         price:"40",
         purchased:false
       },
-    ]
+    ],
+
+    user_cart_items:[]
   }
+
+  // add to cart 
+  addToCart = (id) => {
+    //console.log(id);
+    const newItem = this.state.cart_items.filter(item => item.id === id)[0];
+    //console.log(typeof(this.state.user_cart_items));
+    //console.log(typeof(newItem))
+    newItem.purchased = true;
+    this.setState(prevState => ({
+      cart_items : [...prevState.cart_items],
+      user_cart_items : [
+        ...prevState.user_cart_items,
+        newItem
+      ]
+    }), function(){
+      //console.log(this.state);
+    });
+    
+    
+  }
+
+
+  //remove item from user_cart_items
+  removeItem = (id) => {
+    //console.log(id)
+    const cartItems = [...this.state.cart_items]
+    cartItems.forEach((item) => {
+      if(item.id === id){item.purchased = false}
+    })
+    //console.log(cartItems)
+    
+    
+    this.setState(prevState => ({
+      cart_items: cartItems,
+      user_cart_items: [...this.state.user_cart_items.filter(item => item.id !== id)]
+    }))
+  }
+
 
   render() {
     return (
@@ -47,10 +87,10 @@ class App extends Component {
               <React.Fragment>
                 <div className="mainDiv">
                     <div>
-                        <Cart cart_items = {this.state.cart_items}/>  
+                        <Cart cart_items = {this.state.cart_items} addToCart = {this.addToCart}/>  
                     </div>
                     <div>
-                        <User added_items = {this.state.cart_items} />
+                        <User added_items = {this.state.user_cart_items} removeItem = {this.removeItem}/>
                     </div>
                     
                 </div>

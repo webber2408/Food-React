@@ -4,10 +4,11 @@ import CartItem from './CartItem';
 class Cart extends Component{
 
     render(){
-        console.log(this.props.cart_items);
+        //console.log("cart-items")
+        //console.log(this.props.cart_items);
 
         return this.props.cart_items.map((item) => (
-            <CartItem key={item.id} item={item}/>
+            <CartItem key={item.id} item={item} addToCart = {this.props.addToCart}/>
         ));
     }
 

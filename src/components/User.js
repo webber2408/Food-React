@@ -4,10 +4,11 @@ import UserItem from './UserItem';
 class User extends Component{
 
     render(){
-        console.log(this.props.added_items);
+        //console.log("user-items")
+        //console.log(this.props.added_items);
 
         return this.props.added_items.filter(item => item.purchased === true).map((item) => (
-            <UserItem key={item.id} item={item}/>
+            <UserItem key={item.id} item={item} removeItem = {this.props.removeItem}/>
         ));
     }
 
